@@ -1,10 +1,10 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { FC, useState } from "react";
-import { TextInput, View,StyleSheet } from "react-native";
+import { TextInput, View,StyleSheet,Alert } from "react-native";
 import { Button } from "react-native-paper";
-// import { style } from '../Style/styles';
 import { routesType } from "../types/types";
+import Lots from './Parking';
 
 const Home: FC = () => {
   const [lots, setLots] = useState<number>(0);
@@ -14,10 +14,13 @@ const Home: FC = () => {
   const handlePress = () => {
     navigation.navigate("Go Back", { lots: lots });
   };
-
+   if(!lots){
+   Alert.alert("please enter a number")
+ }
   return (
     <View style={styles.container}>
       <TextInput
+        
         placeholder="Enter number of parking slots..."
         placeholderTextColor="grey"
         keyboardType="numeric"
